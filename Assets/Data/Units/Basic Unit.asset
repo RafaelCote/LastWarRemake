@@ -15,5 +15,5 @@ MonoBehaviour:
   Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   Material: {fileID: 2100000, guid: 4d9afe5fe9b4ba94b9443b45e8899e18, type: 2}
   AttackAbility: {fileID: 11400000, guid: 8b7f2cc2dbe8b9a49a44b25b6e90d5c4, type: 2}
-  MaxHealth: 3
+  MaxHealth: 50
   MovementSpeed: 2
