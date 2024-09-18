@@ -15,14 +15,17 @@ namespace Units.Behaviours.States
         
         public override void Enter(BaseUnitBehaviour owner)
         {
-            _cooldown = _unitController.GetAbilityCooldown();
             _unitController.UseAbility();
+            _cooldown = _unitController.GetAbilityCooldown();
         }
         
         public override void Update()
         {
             if (_cooldown <= 0.0f)
+            {
                 _unitController.UseAbility();
+                _cooldown = _unitController.GetAbilityCooldown();
+            }
 
             _cooldown -= Time.deltaTime;
         }

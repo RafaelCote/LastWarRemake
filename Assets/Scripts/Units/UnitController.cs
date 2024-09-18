@@ -38,7 +38,6 @@ public class UnitController : MonoBehaviour
 
     private void Start()
     {
-        _collisionComponent.OnCollisionBegan += CollisionComponent_OnCollisionBegan;
         _healthComponent.Died += HealthComponent_Died;
     }
 
@@ -46,6 +45,11 @@ public class UnitController : MonoBehaviour
     {
         if (_unit is UnitWithBehaviour behaviouralUnit) //TODO: Refactor en créant des classes gérant les différents comportement
             behaviouralUnit.Behaviour.Act();
+    }
+
+    private void OnDestroy()
+    {
+        _healthComponent.Died -= HealthComponent_Died;
     }
 
     public void Init(Unit unit)
@@ -84,15 +88,14 @@ public class UnitController : MonoBehaviour
         _animator.SetTrigger(paramName);
     }
 
+    public bool TryGetQuadraticCurveComponent(out QuadraticCurveComponent curveComponent)
+    {
+        return TryGetComponent(out curveComponent);
+    }
+
     public float GetAbilityCooldown() => _unit.AttackAbility.Cooldown;
 
     public Transform GetAbilitySpawnPoint() => _abilitySpawnPoint;
-
-    private void CollisionComponent_OnCollisionBegan(Collision other)
-    {
-        if (other.gameObject.TryGetComponent<BulletController>(out var bulletController))
-            _healthComponent.TakeDamage(bulletController.Damage);
-    }
 
     private void HealthComponent_Died()
     {

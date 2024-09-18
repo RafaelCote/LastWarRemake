@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1600995e9f74b27a32ee106409c6ad3, type: 3}
-  m_Name: Forward Bullet
+  m_Script: {fileID: 11500000, guid: 0a2e83a09e4d4829a41ce8d75e3a1e80, type: 3}
+  m_Name: Shooting Forward
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 6227360868528049269, guid: 52cb48c12faac7446b9a2d1fb630ac87, type: 3}
-  _bulletDamage: 10
-  _bulletSpeed: 25
+  Cooldown: 3
+  _projectile: {fileID: 11400000, guid: 3f5149f66bd80c64d83757997f649be1, type: 2}

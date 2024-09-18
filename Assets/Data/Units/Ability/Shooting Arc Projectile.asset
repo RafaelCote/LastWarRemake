@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a2e83a09e4d4829a41ce8d75e3a1e80, type: 3}
-  m_Name: Shooting
+  m_Script: {fileID: 11500000, guid: 06423cf4d54e495891e69c8604e52e57, type: 3}
+  m_Name: Shooting Arc Projectile
   m_EditorClassIdentifier: 
-  Cooldown: 3
-  _projectile: {fileID: 11400000, guid: 3f5149f66bd80c64d83757997f649be1, type: 2}
+  Cooldown: 10
+  _projectile: {fileID: 11400000, guid: 01f70d05916f98249ab15257df896a58, type: 2}
