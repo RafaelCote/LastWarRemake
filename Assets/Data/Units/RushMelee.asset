@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RushMelee
   m_EditorClassIdentifier: 
   Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  Material: {fileID: 2100000, guid: 4d9afe5fe9b4ba94b9443b45e8899e18, type: 2}
+  Material: {fileID: 2100000, guid: c6ffeec71574fcf46bc35bec2ead5d48, type: 2}
   AttackAbility: {fileID: 11400000, guid: dfdf9413ca1c37b47a5e840d30b34db3, type: 2}
   MaxHealth: 20
   MovementSpeed: 10

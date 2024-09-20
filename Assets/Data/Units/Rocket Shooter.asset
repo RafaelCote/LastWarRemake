@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 619c301a69a54b528d8db5e193322c02, type: 3}
-  m_Name: Shooter
+  m_Name: Rocket Shooter
   m_EditorClassIdentifier: 
   Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   Material: {fileID: 2100000, guid: c6ffeec71574fcf46bc35bec2ead5d48, type: 2}
-  AttackAbility: {fileID: 11400000, guid: 8b7f2cc2dbe8b9a49a44b25b6e90d5c4, type: 2}
+  AttackAbility: {fileID: 11400000, guid: 0b306d0e557ec1f44beabd92dd5c624a, type: 2}
   MaxHealth: 20
-  MovementSpeed: 5
+  MovementSpeed: 1
   Behaviour: {fileID: 11400000, guid: f24b7bcfca7978d4d8e7382c642b166a, type: 2}

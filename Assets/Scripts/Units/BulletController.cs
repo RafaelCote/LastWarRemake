@@ -3,10 +3,13 @@ using System.Collections;
 using MrHatProduction.Tools.Components;
 using MrHatProduction.Tools.Math;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BulletController : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _contactPrefab = null;
+    
     private Action<BulletController> _destroyCallback = null;
     private Rigidbody _rigidbody = null;
     private int _damage = 0;
@@ -44,6 +47,9 @@ public class BulletController : MonoBehaviour
         {
             healthComponent.TakeDamage(_damage);
         }
+
+        if (_contactPrefab != null)
+            Instantiate(_contactPrefab, other.contacts[0].point, Random.rotation);
         
         _destroyCallback?.Invoke(this);
         Destroy(gameObject);
