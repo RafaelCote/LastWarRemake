@@ -10,7 +10,7 @@ namespace Units.Abilities
         
         public override void Use(UnitController owner)
         {
-            _projectile.Launch(owner.GetAbilitySpawnPoint());
+            _projectile.Launch(owner.GetProjectileSpawnPoint());
         }
     }
 }

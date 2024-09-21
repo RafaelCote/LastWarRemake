@@ -11,6 +11,7 @@ namespace Player
         
         private PlayerMovement _playerMovement = null;
         private InventoryManager _inventoryManager = null;
+        private float _delay = 0.0f;
 
         private void Awake()
         {
@@ -28,15 +29,20 @@ namespace Player
 
         private void Update()
         {
-            if (_playerMovement.IsMoving)
+            if (_playerMovement.IsMoving && _delay <= 0.0f)
             {
                 _inventoryManager.MakeUnitsUseAbility();
+                _delay = RateOfFire;
             }
+
+            _delay -= Time.deltaTime;
         }
 
         private void InventoryManager_OnAllUnitLost()
         {
             PlayerDied?.Invoke();
         }
+
+        private float RateOfFire => 1.0f / 6.0f;
     }
 }

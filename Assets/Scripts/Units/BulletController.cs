@@ -6,22 +6,25 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(DamageComponent))]
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _contactPrefab = null;
     
     private Action<BulletController> _destroyCallback = null;
+    private DamageComponent _damageComponent = null;
     private Rigidbody _rigidbody = null;
-    private int _damage = 0;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _damageComponent = GetComponent<DamageComponent>();
     }
 
     public void Init(int damage, Action<BulletController> destroyCallback = null)
     {
-        _damage = damage;
+        _damageComponent.Init(damage);
+        _damageComponent.HitSomething += DamageComponent_HitSomething;
         _destroyCallback = destroyCallback;
     }
 
@@ -41,13 +44,8 @@ public class BulletController : MonoBehaviour
         _rigidbody.angularVelocity = Vector3.zero;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void DamageComponent_HitSomething(Collision other)
     {
-        if (other.gameObject.TryGetComponent<HealthComponent>(out var healthComponent))
-        {
-            healthComponent.TakeDamage(_damage);
-        }
-
         if (_contactPrefab != null)
             Instantiate(_contactPrefab, other.contacts[0].point, Random.rotation);
         

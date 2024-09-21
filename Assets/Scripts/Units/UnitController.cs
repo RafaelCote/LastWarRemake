@@ -3,11 +3,11 @@ using System.Collections;
 using MrHatProduction.Tools.Components;
 using Units.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(MovementComponent))]
-[RequireComponent(typeof(CollisionComponent))]
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(HitBoxComponent))]
+[RequireComponent(typeof(DamageableComponent))]
 public class UnitController : MonoBehaviour
 {
     public event Action<UnitController> Died;
@@ -17,27 +17,27 @@ public class UnitController : MonoBehaviour
     [Header("Visual")]
     [SerializeField] private MeshRenderer _meshRenderer = null;
     [SerializeField] private MeshFilter _meshFilter = null;
-    [SerializeField] private Transform _abilitySpawnPoint = null;
+    [FormerlySerializedAs("_abilitySpawnPoint")] [SerializeField] private Transform _projectileSpawnPoint = null;
+    [SerializeField] private Transform _meleeColliderSpawnPoint = null;
     [SerializeField] private Animator _animator = null;
     
     [Header("Debug")]
     [SerializeField] private Unit _unit = null;
     
     private MovementComponent _movementComponent = null;
-    private CollisionComponent _collisionComponent = null;
-    private HitBoxComponent _hitBoxComponent = null;
+    private DamageableComponent _damageableComponent = null;
     private HealthComponent _healthComponent = null;
 
     private void Awake()
     {
         _movementComponent = GetComponent<MovementComponent>();
-        _collisionComponent = GetComponent<CollisionComponent>();
         _healthComponent = GetComponent<HealthComponent>();
-        _hitBoxComponent = GetComponent<HitBoxComponent>();
+        _damageableComponent = GetComponent<DamageableComponent>();
     }
 
     private void Start()
     {
+        _damageableComponent.DamageReceived += DamageableComponent_DamageReceived;
         _healthComponent.Died += HealthComponent_Died;
     }
 
@@ -49,6 +49,7 @@ public class UnitController : MonoBehaviour
 
     private void OnDestroy()
     {
+        _damageableComponent.DamageReceived += DamageableComponent_DamageReceived;
         _healthComponent.Died -= HealthComponent_Died;
     }
 
@@ -76,26 +77,20 @@ public class UnitController : MonoBehaviour
         transform.forward = velocity.normalized;
     }
 
-    public IEnumerator ActivateHitBoxForSeconds(float seconds)
-    {
-        _hitBoxComponent.gameObject.SetActive(true);
-        yield return new WaitForSeconds(seconds);
-        _hitBoxComponent.gameObject.SetActive(false);
-    }
-
     public void Animate(string paramName)
     {
         _animator.SetTrigger(paramName);
     }
 
-    public bool TryGetQuadraticCurveComponent(out QuadraticCurveComponent curveComponent)
-    {
-        return TryGetComponent(out curveComponent);
-    }
-
+    public bool TryGetQuadraticCurveComponent(out QuadraticCurveComponent curveComponent) => TryGetComponent(out curveComponent);
     public float GetAbilityCooldown() => _unit.AttackAbility.Cooldown;
+    public Transform GetProjectileSpawnPoint() => _projectileSpawnPoint;
+    public Transform GetMeleeColliderSpawnPoint() => _meleeColliderSpawnPoint;
 
-    public Transform GetAbilitySpawnPoint() => _abilitySpawnPoint;
+    private void DamageableComponent_DamageReceived(int damage)
+    {
+        _healthComponent.TakeDamage(damage);
+    }
 
     private void HealthComponent_Died()
     {

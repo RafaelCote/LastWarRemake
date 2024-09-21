@@ -1,4 +1,4 @@
-﻿using Obstacles.InfiniteScroller;
+﻿using ObstaclesSystem;
 
 namespace GameFlow
 {
@@ -8,7 +8,7 @@ namespace GameFlow
 
         public override void Begin()
         {
-            InfiniteScrollingManager.Instance.ResetTilesPositions();
+            
         }
 
         public override void End() { }

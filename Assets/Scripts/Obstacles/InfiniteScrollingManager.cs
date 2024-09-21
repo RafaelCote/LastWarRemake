@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Obstacles.InfiniteScroller
+namespace ObstaclesSystem
 {
     public class InfiniteScrollingManager : MonoBehaviour
     {

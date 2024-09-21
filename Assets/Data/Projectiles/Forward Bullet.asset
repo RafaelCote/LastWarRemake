@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Forward Bullet
   m_EditorClassIdentifier: 
   _prefab: {fileID: 6227360868528049269, guid: 52cb48c12faac7446b9a2d1fb630ac87, type: 3}
-  _bulletDamage: 10
+  _bulletDamage: 1
   _bulletSpeed: 25

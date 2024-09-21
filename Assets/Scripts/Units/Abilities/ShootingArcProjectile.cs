@@ -7,15 +7,13 @@ namespace Units.Abilities
     public class ShootingArcProjectile : BaseAbility
     {
         [SerializeField] private ArcProjectile _projectile;
-
-        private float _currentCooldown = 0.0f;
         
         public override void Use(UnitController owner)
         {
             if (owner.TryGetQuadraticCurveComponent(out var curveComponent))
             {
                 _projectile.SetQuadraticCurve(curveComponent.Curve);
-                _projectile.Launch(owner.GetAbilitySpawnPoint());
+                _projectile.Launch(owner.GetProjectileSpawnPoint());
             }
             else
             {

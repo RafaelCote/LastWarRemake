@@ -10,7 +10,7 @@ namespace Units.Behaviours
         public override void Init(UnitController owner)
         {
             var attackingState = new Attacking(owner);
-            var movingState = new MovingToRange(owner.transform, UnitController.PlayerTransform, 1.0f);
+            var movingState = new MovingToRange(owner.transform, UnitController.PlayerTransform, 1.5f);
             movingState.TargetReached += () => ChangeState(attackingState);
             
             _stateMachine = new FiniteStateMachine<BaseUnitBehaviour>();

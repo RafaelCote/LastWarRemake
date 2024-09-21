@@ -1,4 +1,4 @@
-﻿using Obstacles.InfiniteScroller;
+﻿using ObstaclesSystem;
 
 namespace GameFlow
 {
@@ -8,13 +8,9 @@ namespace GameFlow
         
         public override void Begin()
         {
-            InfiniteScrollingManager.Instance.BeginMoving();
             _gameManager.SpawnPlayer();
         }
 
-        public override void End()
-        {
-            InfiniteScrollingManager.Instance.StopMoving();
-        }
+        public override void End() { }
     }
 }

@@ -4841,7 +4841,6 @@ GameObject:
   - component: {fileID: 6154577146204969310}
   - component: {fileID: 7050353270432915683}
   - component: {fileID: 8018393653730715668}
-  - component: {fileID: 2973233873762704455}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -4914,27 +4913,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2973233873762704455
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2459986252451228635}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4126557216966043758
 GameObject:
   m_ObjectHideFlags: 0
@@ -4946,7 +4924,6 @@ GameObject:
   - component: {fileID: 6291550573625386415}
   - component: {fileID: 4127869228715240174}
   - component: {fileID: 2868494199372467405}
-  - component: {fileID: 3602228157282722471}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -5019,29 +4996,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3602228157282722471
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126557216966043758}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4437514340098840738
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,6 +5072,8 @@ GameObject:
   - component: {fileID: 2848090787423210254}
   - component: {fileID: 2389553992415079444}
   - component: {fileID: 940647542799189856}
+  - component: {fileID: 8344223064222355736}
+  - component: {fileID: 6882188011256435290}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -5182,3 +5138,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _contactPrefab: {fileID: 5284464672094470869, guid: 5c6c2682551a3844fb3a03b86232597e, type: 3}
+--- !u!114 &8344223064222355736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047596392560544648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c9c058146749978b322628e4bd2449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &6882188011256435290
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047596392560544648}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.15
+  m_Center: {x: 0, y: 0, z: 0.3}
