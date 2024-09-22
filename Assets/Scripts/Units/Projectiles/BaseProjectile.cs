@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Units.Projectiles
 {
@@ -8,6 +9,6 @@ namespace Units.Projectiles
         [SerializeField] protected int _bulletDamage = 0;
         [SerializeField] protected float _bulletSpeed = 1.0f;
 
-        public abstract void Launch(Transform spawnPoint);
+        public abstract void Launch(Transform spawnPoint, Action<GameObject> projectileSpawnCallback);
     }
 }

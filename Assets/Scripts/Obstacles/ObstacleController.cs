@@ -1,28 +1,38 @@
-﻿using MrHatProduction.Tools.Components;
+﻿using System;
+using MrHatProduction.Tools.Components;
 using ObstaclesSystem.Data.Obstacles;
+using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace ObstacleSystem
+namespace ObstaclesSystem
 {
-    [RequireComponent(typeof(HealthComponent))]
-    [RequireComponent(typeof(DamageableComponent))]
     public class ObstacleController : MonoBehaviour
     {
-        [SerializeField] private BaseObstacle _obstacle = null;
+        public event Action HasBeenTriggered;
         
-        private HealthComponent _healthComponent = null;
-        private DamageableComponent _damageableComponent = null;
+        [SerializeField] private CollisionComponent _unitsCollisionComponent = null;
+        [SerializeField] private HealthComponent _healthComponent = null;
+        [SerializeField] private DamageableComponent _damageableComponent = null;
+        
+        private BaseObstacle _obstacle = null;
 
-        private void Awake()
+        private void OnEnable()
         {
-            _healthComponent = GetComponent<HealthComponent>();
-            _damageableComponent = GetComponent<DamageableComponent>();
+            _damageableComponent.DamageReceived += DamageableComponent_DamageReceived;
+            _unitsCollisionComponent.TriggerEntered += UnitsCollisionComponent_TriggerEntered;
         }
 
-        private void Start()
+        private void OnDisable()
         {
-            _healthComponent.Init(_obstacle.StartingHealth);
-            _damageableComponent.DamageReceived += DamageableComponent_DamageReceived;
+            _damageableComponent.DamageReceived -= DamageableComponent_DamageReceived;
+            _unitsCollisionComponent.TriggerEntered -= UnitsCollisionComponent_TriggerEntered;
+        }
+
+        public void Init(BaseObstacle obstacle)
+        {
+            _obstacle = obstacle;
+            _healthComponent.Init(Random.Range(_obstacle.StartingHealthRange.x, _obstacle.StartingHealthRange.y));
         }
 
         private void DamageableComponent_DamageReceived(int healthAmount)
@@ -31,6 +41,21 @@ namespace ObstacleSystem
                 _healthComponent.Heal(healthAmount);
             else if (_obstacle.Mode == ObstacleMode.Decreasing)
                 _healthComponent.TakeDamage(healthAmount);
+        }
+
+        private void UnitsCollisionComponent_TriggerEntered(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player Units"))
+            {
+                var inventoryManager = FindObjectOfType<InventoryManager>();
+                
+                if (_healthComponent.CurrentHealth > 0)
+                    inventoryManager.AddUnits(_healthComponent.CurrentHealth);
+                else if (_healthComponent.CurrentHealth < 0)
+                    inventoryManager.RemoveUnits(Mathf.Abs(_healthComponent.CurrentHealth));
+                    
+                HasBeenTriggered?.Invoke();
+            }
         }
     }
 }

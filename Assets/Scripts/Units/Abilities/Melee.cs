@@ -19,6 +19,7 @@ namespace Units.Abilities
             _damageColliderInstance = Instantiate(_colliderPrefab, colliderSpawnPoint.position, colliderSpawnPoint.rotation);
             _damageColliderInstance.HitSomething += _ => DestroyColliderInstance();
             _damageColliderInstance.CollidedWithSomething += _ => DestroyColliderInstance();
+            InitializeDamageLayer(_damageColliderInstance.gameObject, owner.gameObject.layer);
             _damageColliderInstance.Init(Damage);
         }
 

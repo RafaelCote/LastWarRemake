@@ -33,11 +33,20 @@ namespace Player
         public void SpawnUnit() //TODO: Refactor with UnitSpawner class
         {
             var unitController = _unitSpawner.Spawn(_basicUnit, _unitsContainer);
+            unitController.gameObject.layer = LayerMask.NameToLayer("Player Units");
             unitController.Died += UnitController_Died;
             _units.Add(unitController);
 
             if (_units.Count >= Mathf.Pow(_rowModulo, 2))
                 _rowModulo++;
+        }
+
+        public void AddUnits(int unitAmount)
+        {
+            for (int i = 0; i < unitAmount; i++)
+            {
+                SpawnUnit();
+            }
         }
 
         public void RemoveUnit(UnitController unit)
@@ -46,6 +55,20 @@ namespace Player
 
             if (_units.Count <= 0) 
                 AllUnitLost?.Invoke();
+        }
+
+        private void RemoveLastUnit()
+        {
+            if (_units.Count < 1)
+                return;
+            
+            RemoveUnit(_units[_units.Count - 1]);
+        }
+        
+        public void RemoveUnits(int unitAmount)
+        {
+            for (int i = 1; i <= unitAmount; i++) 
+                RemoveLastUnit();
         }
 
         public void MakeUnitsUseAbility()
@@ -64,6 +87,7 @@ namespace Player
 
         private void UnitController_Died(UnitController unit)
         {
+            unit.Died -= UnitController_Died;
             RemoveUnit(unit);
         }
 

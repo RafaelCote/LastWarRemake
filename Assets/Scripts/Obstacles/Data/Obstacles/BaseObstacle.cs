@@ -11,7 +11,13 @@ namespace ObstaclesSystem.Data.Obstacles
     [CreateAssetMenu(fileName = "Obstacle", menuName = "Obstacle/Base", order = 0)]
     public class BaseObstacle : ScriptableObject
     {
-        public int StartingHealth;
+        public Vector2Int StartingHealthRange;
         public ObstacleMode Mode;
+
+        private void OnValidate()
+        {
+            if (StartingHealthRange.x > StartingHealthRange.y)
+                Debug.LogError("StartingHealthRange's x value should be lower of the y value.");
+        }
     }
 }

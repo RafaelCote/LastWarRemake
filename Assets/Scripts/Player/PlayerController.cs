@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlayerMovement),
-                      typeof(InventoryManager))]
+    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(InventoryManager))]
     public class PlayerController : MonoBehaviour
     {
         public event Action PlayerDied;
@@ -17,12 +17,12 @@ namespace Player
         {
             _playerMovement = GetComponent<PlayerMovement>();
             _inventoryManager = GetComponent<InventoryManager>();
-            
-            _inventoryManager.AllUnitLost += InventoryManager_OnAllUnitLost;
         }
 
         private void Start()
         {
+            _inventoryManager.AllUnitLost += InventoryManager_OnAllUnitLost;
+            
             _playerMovement.EnableInputs();
             _inventoryManager.SpawnUnit();
         }

@@ -5,41 +5,41 @@ namespace MrHatProduction.Tools.Components
 {
     public class CollisionComponent : MonoBehaviour
     {
-        public event Action<Collider> OnTriggerEntered;
-        public event Action<Collider> OnTriggerExited;
-        public event Action<Collider> OnTriggerStaying;
-        public event Action<Collision> OnCollisionBegan;
-        public event Action<Collision> OnCollisionEnded;
-        public event Action<Collision> OnColliding;
+        public event Action<Collider> TriggerEntered;
+        public event Action<Collider> TriggerExited;
+        public event Action<Collider> TriggerStaying;
+        public event Action<Collision> CollisionBegan;
+        public event Action<Collision> CollisionEnded;
+        public event Action<Collision> Colliding;
         
         private void OnTriggerEnter(Collider other)
         {
-            OnTriggerEntered?.Invoke(other);
+            TriggerEntered?.Invoke(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            OnTriggerExited?.Invoke(other);
+            TriggerExited?.Invoke(other);
         }
 
         private void OnTriggerStay(Collider other)
         {
-            OnTriggerStaying?.Invoke(other);
+            TriggerStaying?.Invoke(other);
         }
         
         private void OnCollisionEnter(Collision other)
         {
-            OnCollisionBegan?.Invoke(other);
+            CollisionBegan?.Invoke(other);
         }
 
         private void OnCollisionExit(Collision other)
         {
-            OnCollisionEnded?.Invoke(other);
+            CollisionEnded?.Invoke(other);
         }
 
         private void OnCollisionStay(Collision other)
         {
-            OnColliding?.Invoke(other);
+            Colliding?.Invoke(other);
         }
     }
 }

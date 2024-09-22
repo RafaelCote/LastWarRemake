@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc95d23828514b12a3b8f2178690c409, type: 3}
-  m_Name: Obstacle
+  m_Name: ObstacleDecreasing
   m_EditorClassIdentifier: 
-  StartingHealth: -10
+  StartingHealthRange: {x: -3, y: 5}
   Mode: 1

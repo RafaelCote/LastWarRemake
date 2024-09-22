@@ -13,7 +13,10 @@ namespace Units.Abilities
             if (owner.TryGetQuadraticCurveComponent(out var curveComponent))
             {
                 _projectile.SetQuadraticCurve(curveComponent.Curve);
-                _projectile.Launch(owner.GetProjectileSpawnPoint());
+                _projectile.Launch(owner.GetProjectileSpawnPoint(), instance =>
+                {
+                    InitializeDamageLayer(instance, owner.gameObject.layer);
+                });
             }
             else
             {

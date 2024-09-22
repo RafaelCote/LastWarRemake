@@ -2,7 +2,8 @@
     "name": "ObstaclesSystem",
     "rootNamespace": "ObstacleSystem",
     "references": [
-        "GUID:8ddf723dbc5934943aefbf16cadbeaa8"
+        "GUID:8ddf723dbc5934943aefbf16cadbeaa8",
+        "GUID:bb68495cfb075514782a20942c408b0b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

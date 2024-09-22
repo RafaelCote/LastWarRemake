@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using MrHatProduction.Tools.Components;
 using Units.Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(MovementComponent))]
 [RequireComponent(typeof(HealthComponent))]
@@ -17,7 +15,7 @@ public class UnitController : MonoBehaviour
     [Header("Visual")]
     [SerializeField] private MeshRenderer _meshRenderer = null;
     [SerializeField] private MeshFilter _meshFilter = null;
-    [FormerlySerializedAs("_abilitySpawnPoint")] [SerializeField] private Transform _projectileSpawnPoint = null;
+    [SerializeField] private Transform _projectileSpawnPoint = null;
     [SerializeField] private Transform _meleeColliderSpawnPoint = null;
     [SerializeField] private Animator _animator = null;
     

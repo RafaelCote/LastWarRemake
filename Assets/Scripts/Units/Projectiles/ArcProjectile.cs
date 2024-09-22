@@ -1,4 +1,5 @@
-﻿using MrHatProduction.Tools.Math;
+﻿using System;
+using MrHatProduction.Tools.Math;
 using UnityEngine;
 
 namespace Units.Projectiles
@@ -10,9 +11,10 @@ namespace Units.Projectiles
         
         private QuadraticCurve _quadraticCurve;
 
-        public override void Launch(Transform spawnPoint)
+        public override void Launch(Transform spawnPoint, Action<GameObject> projectileSpawnCallback)
         {
             var bullet = Instantiate(_prefab, spawnPoint.position, spawnPoint.rotation);
+            projectileSpawnCallback?.Invoke(bullet.gameObject);
             bullet.Init(_bulletDamage);
             bullet.Launch(_animationCurve, _quadraticCurve);
         }

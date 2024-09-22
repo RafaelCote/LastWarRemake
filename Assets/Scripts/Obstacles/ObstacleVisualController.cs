@@ -1,7 +1,7 @@
 using MrHatProduction.Tools.Components;
 using UnityEngine;
 
-namespace ObstacleSystem
+namespace ObstaclesSystem
 {
     public class ObstacleVisualController : MonoBehaviour
     {

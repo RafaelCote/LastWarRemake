@@ -10,7 +10,10 @@ namespace Units.Abilities
         
         public override void Use(UnitController owner)
         {
-            _projectile.Launch(owner.GetProjectileSpawnPoint());
+            _projectile.Launch(owner.GetProjectileSpawnPoint(), instance =>
+            {
+                InitializeDamageLayer(instance, owner.gameObject.layer);
+            });
         }
     }
 }
